@@ -29,6 +29,15 @@ const user = new moongoose.Schema({
     required: true,
     ref: 'Profile',},
 
+    token:{
+      type: String
+
+    },
+    resetPasswordExpire:{
+      type:Date
+
+    },
+
     courses:[
         {
             type: moongoose.Schema.Types.ObjectId,

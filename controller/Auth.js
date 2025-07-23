@@ -161,11 +161,11 @@ try {
       user,
     });
 
-    return res.status(200).json({
-      sucess: true,
-      message: "USER SIGNUP SUCESSFULLY",
-      user,
-    });
+    // return res.status(200).json({
+    //   sucess: true,
+    //   message: "USER SIGNUP SUCESSFULLY",
+    //   user,
+    // });
   };
 } catch (error) {
   console.log(error);
@@ -176,7 +176,7 @@ try {
 }
 
 
-exports.login =asysnc(req,res) => {
+exports.login = async(req,res) => {
     try{
         //get data from body
         const{email,password} =req.body;
@@ -193,6 +193,7 @@ exports.login =asysnc(req,res) => {
                 sucess:false,
                 message:"USER NOT FOUND,KINDLY SIGNUP",
             });
+          }
             
             
             //generate JWT OR AFTER PASSWORD MATCHING
@@ -200,7 +201,7 @@ exports.login =asysnc(req,res) => {
                 const payload = {
                     email:user.email,
                     id:user_id,
-                    role:user.role,
+                    accountType:user.accountType,
     
                 }
                 const token = jwt.sign(payload,process.env.JWT_SECRET,{
@@ -223,9 +224,9 @@ exports.login =asysnc(req,res) => {
                 user,
                 message:"USER LOGIN SUCESSFULLY",
             })
-        }
         
-        //
+        
+        //generate JWT OR AFTER PASSWORD MATCHING
     }
     catch(error){
         console.log(error);
@@ -238,3 +239,11 @@ exports.login =asysnc(req,res) => {
 };
 
 //change passwords
+/*.   GET DATA FROM BODY
+VALUDATE DATA 
+CHECK USER EXIST OR NOT
+CHECK OLD PASSWORD,
+GET NEW PASSWORD AND CONFIRM PASSWORD
+SEND MAIL TO USER 
+RETURN RESPONSE
+*/

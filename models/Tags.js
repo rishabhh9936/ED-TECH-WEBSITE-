@@ -1,5 +1,5 @@
 const moongoose = require('mongoose');
-const tagsSchema = new moongoose.Schema(
+   const tagsSchema = new moongoose.Schema(
     {
         name:{
             type:String,
@@ -16,4 +16,4 @@ const tagsSchema = new moongoose.Schema(
         },
     }
 );
-module.exports = moongoose.model('Tag', tagsSchema);
+module.exports =moongoose.model('Tag',tagsSchema);

@@ -1,9 +1,11 @@
-const moongoose = require('mongoose');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
+
+const DB_URI = process.env.MONGO_URI; // Replace with your MongoDB URI
 const connectDB = async () => {
   try {
-    await moongoose.connect(process.env.MONGO_URI, {
+    await mongoose.connect(DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -13,6 +15,8 @@ const connectDB = async () => {
     process.exit(1);
   }
 }
+
+
 module.exports = connectDB;
 // const mongoose = require('mongoose');
 // const dotenv = require('dotenv');
