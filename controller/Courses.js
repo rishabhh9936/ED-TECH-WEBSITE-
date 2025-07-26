@@ -1,5 +1,5 @@
 const Courses = require("../models/Courses");
-const Tag = require("../models/tags");
+const Tag = require("../models/Category");
 const User = require("../models/User");
 const {uploadAllToCloudinary} = require("../utils/imgeUploader");
 
@@ -115,5 +115,75 @@ exports.getAllCourses = async(req,res) => {
         });
 
     }
+}
+
+
+// GET COURSE DETAILS
+
+exports.getCourseDetails = async(req,res) => {
+try{
+
+    const courseId = req.body;
+    const courseDetails = await Course.find(    {id:courseId}).populate(
+        {
+            path:"instructor",populate:{
+                path:"addtional Details",
+            },
+        }
+    ).populate("category").populate("ratingandreview").populate({
+        path:"courseContent",
+        populate:{
+            path:"subSection",
+        },
+    }).exec();
+
+
+
+    // validation
+    if(!courseDetails){
+        return res.status(404).json({
+            success:false,
+            message:`Course not found  along with ${courseId}`,
+        });
+    }
+
+    // return response
+    return res.status(200).json({
+        success:true,
+        message:"Course details fetched successfully",
+        data:courseDetails,
+    });
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+}
+catch(error){
+    console.error("Error fetching course details:", error);
+    return res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: error.message,
+    });
+
+
+}
+
+
+
 }
 
