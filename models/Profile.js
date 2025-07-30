@@ -5,16 +5,16 @@ const profileSchema = new mongoose.Schema({
 
    },
    dateOfBirth: {
-    type: Date,
-    required: true,
+    type: String,
+    
    },
    about:{
     type: String,
-    required: true,
+    trim: true,
    },
-    phoneNumber: {
-     type: String,
-     required: true,
+    contactNumber: {
+     type: Number,
+     
      trim: true,
     },
 

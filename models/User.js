@@ -1,5 +1,5 @@
-const moongoose = require('mongoose');
-const user = new moongoose.Schema({
+const mongoose = require('mongoose');
+const user = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
@@ -24,8 +24,16 @@ const user = new moongoose.Schema({
     enum: ['Admin','Student' ,'Instructor'],
     required: true,
   },
+  active: {
+			type: Boolean,
+			default: true,
+		},
+		approved: {
+			type: Boolean,
+			default: true,
+		},
   additionalDeatails: {
-    type:moongoose.Schema.Types.ObjectId,
+    type:mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'Profile',},
 
@@ -40,7 +48,7 @@ const user = new moongoose.Schema({
 
     courses:[
         {
-            type: moongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Course',  
         }
     ],
@@ -50,7 +58,7 @@ const user = new moongoose.Schema({
     },
     coursesProgresss:[
         {
-            type: moongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'courseProgress',  
         }
     ],
@@ -59,6 +67,16 @@ const user = new moongoose.Schema({
     type: String,
     required: true,
   },
-});
+  
+},
 
-module.exports = moongoose.model('User', userSchema); 
+
+
+
+
+
+
+
+{ timestamps: true });
+
+module.exports = mongoose.model('User', userSchema); 

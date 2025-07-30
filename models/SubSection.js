@@ -1,22 +1,17 @@
-const moongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const subSectionSchema = new moongoose.Schema({
-    tittle:{
-        type:String,
-        
-    },
-    timeDuration:{
-        type:String,
-        
-    },
-    description:{
-        type:String,
-        
-    },
-    vediopUrl:{
-        type:String,
-       
-    },
-    
+const subSectionSchema = new mongoose.Schema({
+  tittle: {
+    type: String,
+  },
+  timeDuration: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
+  videoUrl: {
+    type: String,
+  },
 });
-module.exports = moongoose.model('SubSection', subSectionSchema);
+module.exports = mongoose.model("SubSection", subSectionSchema);

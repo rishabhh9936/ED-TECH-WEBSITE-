@@ -1,5 +1,5 @@
-const moongoose = require('mongoose');
-   const categorySchema = new moongoose.Schema(
+const mongoose = require('mongoose');
+   const categorySchema = new mongoose.Schema(
     {
         name:{
             type:String,
@@ -7,13 +7,13 @@ const moongoose = require('mongoose');
            
         },
         description:{
-            type:Number,
+            type:String,
             
         },
         course:{
-            type:moongoose.Schema.Types.ObjectId,
+            type:mongoose.Schema.Types.ObjectId,
             ref: 'Course',
         },
     }
 );
-module.exports =moongoose.model('Category',categorySchema);
+module.exports =mongoose.model('Category',categorySchema);

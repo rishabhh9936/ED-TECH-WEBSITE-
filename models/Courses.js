@@ -1,5 +1,5 @@
-const moongoose = require('mongoose');
-const coursesSchema = new moongoose.Schema({
+const mongoose = require('mongoose');
+const coursesSchema = new mongoose.Schema({
     courseName:{
         type:String,
        
@@ -9,7 +9,7 @@ const coursesSchema = new moongoose.Schema({
         
     },
     instructor:{
-        type: moongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User',
     },
@@ -19,12 +19,12 @@ const coursesSchema = new moongoose.Schema({
     },
     courseContent:
     [{
-        type: moongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
        
         trim:true,
     }],
     RatingandReview:{
-        type: moongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         
         ref: 'RatingandReview',
 
@@ -39,20 +39,32 @@ const coursesSchema = new moongoose.Schema({
         required:true,
     },
     Tag:{
-        type:moongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Tag',
 
 
     },
+    instructions: {
+		type: [String],
+	},
+	status: {
+		type: String,
+		enum: ["Draft", "Published"],
+	},
+    category: {
+		type: mongoose.Schema.Types.ObjectId,
+		// required: true,
+		ref: "Category",
+	},
     StudentEnrolled:[
         {
-            type: moongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'User',
         }
     ]
 
 });
-module.exports = moongoose.model('Course', coursesSchema);
+module.exports = mongoose.model('Course', coursesSchema);
 

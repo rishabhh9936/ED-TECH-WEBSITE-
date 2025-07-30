@@ -1,15 +1,15 @@
-const moongoose = require('mongoose');
-const sectionSchema=new moongoose.Schema( {
+const mongoose = require('mongoose');
+const sectionSchema=new mongoose.Schema( {
     sectionName:{
         type:String,
         
     },
     subSection:[
     {
-        type: moongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'SubSection',
     }]
 
 })
-module.exports =moongoose.model('Section',sectionSchema);
+module.exports =mongoose.model('Section',sectionSchema);

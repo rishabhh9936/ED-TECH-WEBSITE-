@@ -79,8 +79,8 @@ exports.sendOTP = async (req, res) => {
 //HASH PASSWORD
 //ENTRY CRAETE IN DB
 
-try {
-  exports.signUP = async (req, res) => {
+exports.signUP = async (req, res) => {
+  try {
     const {
       firstName,
       lastname,
@@ -160,20 +160,14 @@ try {
       message: "USER SIGNUP SUCCESSFULLY",
       user,
     });
-
-    // return res.status(200).json({
-    //   sucess: true,
-    //   message: "USER SIGNUP SUCESSFULLY",
-    //   user,
-    // });
-  };
-} catch (error) {
-  console.log(error);
-  return res.status(500).json({
-    sucess: false,
-    message: "user cannot signup,please try again",
-  });
-}
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      sucess: false,
+      message: "user cannot signup,please try again",
+    });
+  }
+};
 
 
 exports.login = async(req,res) => {
